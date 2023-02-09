@@ -11,7 +11,7 @@ mongoose.set('strictQuery', false);
 const port = process.env.PORT || 3000;
 const empModel = require('./Modals/Random');
 
-mongoose.connect("mongodb://localhost:27017/test").then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log("mongoose is connected")
 }).catch((err) => console.log(err));
 
