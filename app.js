@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const hbs = require('hbs');
+require('dotenv').config();
 app.use(express.json());
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false);
-
+const port = process.env.PORT || 3000;
 const empModel = require('./Modals/Random');
 
 mongoose.connect("mongodb://localhost:27017/test").then(() => {
@@ -31,6 +32,7 @@ app.post('/', async (req, res) => {
 
 app.get('/', (req, res) => {
     res.render('home');
+
 })
 
-app.listen(3000, (err) => console.log("listening"));
+app.listen(port, () => console.log(`listening at ${port}`));
